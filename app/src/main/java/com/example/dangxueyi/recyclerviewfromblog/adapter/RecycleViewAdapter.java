@@ -22,6 +22,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
     private List<Integer> mHeights;
 
+    private OnItemClickListener mOnItemClickListener;
     public RecycleViewAdapter(Context context, ArrayList<String> arrayList) {
         this.context = context;
         this.arrayList = arrayList;
@@ -31,7 +32,14 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
             mHeights.add((int)(100+Math.random()*300));
         }
     }
+    public interface OnItemClickListener{
+        void onItemClick(View view ,int position);
+        void onItemLongClickListener(View view ,int position);
+    }
 
+    public  void setOnItemClickListener(OnItemClickListener onItemClickListener){
+        this.mOnItemClickListener= onItemClickListener;
+    }
     @Override
     public MyBaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -41,13 +49,32 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     }
 
     @Override
-    public void onBindViewHolder(MyBaseViewHolder holder, int position) {
+    public void onBindViewHolder(final MyBaseViewHolder holder, final int position) {
 
        ViewGroup.LayoutParams lp = holder.textView.getLayoutParams();
         lp.height= mHeights.get(position);
         holder.textView.setLayoutParams(lp);
 
         holder.textView.setText(arrayList.get(position));
+
+        if(mOnItemClickListener!=null){
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos  = holder.getLayoutPosition();
+                    mOnItemClickListener.onItemClick(holder.itemView,pos);
+                }
+            });
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    int pos = holder.getLayoutPosition();
+                    mOnItemClickListener.onItemLongClickListener(holder.itemView,pos);
+                    deleteItem(position);
+                    return false;
+                }
+            });
+        }
     }
     @Override
     public int getItemCount() {
@@ -63,4 +90,15 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         }
 
     }
+   public void addItem (int position){
+        arrayList.add(position,"insertData");
+       notifyItemInserted(position);
+
+    }
+
+    public void deleteItem(int position){
+        arrayList.remove(position);
+        notifyItemRemoved(position);
+    }
+
 }

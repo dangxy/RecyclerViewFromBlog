@@ -2,15 +2,19 @@ package com.example.dangxueyi.recyclerviewfromblog;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.dangxueyi.recyclerviewfromblog.adapter.RecycleViewAdapter;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends ActionBarActivity {
 
 
 
@@ -18,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> arrayList;
 
     private Context mContext;
+    private  RecycleViewAdapter mRecycleviewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +41,46 @@ public class MainActivity extends AppCompatActivity {
             arrayList.add("" + (char) i);
         }
         mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL));
-        mRecyclerView.setAdapter(new RecycleViewAdapter(mContext, arrayList));
+
+        mRecycleviewAdapter = new RecycleViewAdapter(mContext, arrayList);
+        mRecyclerView.setAdapter(mRecycleviewAdapter);
+
+
+        mRecycleviewAdapter.setOnItemClickListener(new RecycleViewAdapter.OnItemClickListener(){
+            @Override
+            public void onItemClick(View view, int position) {
+
+                Toast.makeText(mContext,position+"click",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onItemLongClickListener(View view, int position) {
+                Toast.makeText(mContext,position+"remove ",Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_staggered,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.id_action_add:
+
+                mRecycleviewAdapter.addItem(1);
+                break;
+            case R.id.id_action_delete:
+                mRecycleviewAdapter.deleteItem(1);
+
+                       break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
