@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#2bcad9">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/bt_wrong_note"
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:text="错题本"
+                android:layout_marginRight="0dp"
+                android:background="@drawable/button_selector_background_left"
+                android:textSize="14sp"
+                android:enabled="false"
+                android:textColor="@color/item_button_selector_text"></Button>
+
+            <Button
+                android:id="@+id/bt_collect"
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:layout_toRightOf="@+id/bt_wrong_note"
+                android:text="收藏夹"
+                android:layout_marginLeft="0dp"
+                android:background="@drawable/button_selector_background_right"
+                android:textSize="14sp"
+                android:enabled="true"
+                android:textColor="@color/item_button_selector_text"></Button>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_latest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="最新"
+            android:textSize="20sp" />
+</RelativeLayout>
+<FrameLayout
+    android:id="@+id/fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+</FrameLayout>
+</LinearLayout>
