@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -25,9 +24,6 @@ public class FragmentMainActivity extends FragmentActivity implements View.OnCli
     Button btCollect;
     @Bind(R.id.tv_latest)
     TextView tvLatest;
-    @Bind(R.id.fragment)
-    FrameLayout fragment;
-
     private PopupWindow popupWindow;
     private  LinearLayout popup;
 
