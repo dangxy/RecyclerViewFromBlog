@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="150dp"
+    android:layout_height="150dp"
+    android:id="@+id/ll_popup"
+    android:background="@mipmap/popu_window_back_ground">
+
+    <TextView
+        android:id="@+id/tv_popup_latest"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="最新"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:textColor="#ffffff"/>
+    <TextView
+        android:id="@+id/tv_popup_tips"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="知识点"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:textColor="#ffffff"/>
+
+</LinearLayout>

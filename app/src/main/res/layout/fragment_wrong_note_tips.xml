@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#2bcad9"
     tools:context="com.example.dangxueyi.recyclerviewfromblog.fragment.WrongNoteFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="错题本"
+        android:text="错题本-知识点"
         android:textSize="20sp"/>
 
 </RelativeLayout>
